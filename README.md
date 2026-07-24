@@ -1,77 +1,61 @@
-# supabase Project
+# Browserslist
 
-Use this repository to run and edit the app locally, then publish changes back through supabase.
+<img width="120" height="120" alt="Browserslist logo by Anton Popov"
+     src="https://browsersl.ist/logo.svg" align="right">
 
-Any change pushed to the repo will also be reflected in the supabase Builder.
+The config to share target browsers and Node.js versions between different
+front-end tools. It is used in:
 
-## Prerequisites
+- [Autoprefixer]
+- [Babel]
+- [postcss-preset-env]
+- [eslint-plugin-compat]
+- [stylelint-no-unsupported-browser-features]
+- [postcss-normalize]
+- [obsolete-webpack-plugin]
 
-1. Clone the repository using the project's Git URL.
-2. Navigate to the project directory.
-3. Install dependencies: `npm install`.
-4. Install the supabase CLI: `npm install -g supabase@latest`.
+All tools will find target browsers automatically,
+when you add the following to `package.json`:
 
-See the [supabase CLI docs](https://docs.supabase.com/developers/references/cli/get-started/overview) if you want to run supabase commands directly.
-
-## Run Locally
-
-Run the full local development environment from the project root:
-
-```bash
-supabase dev
+```json
+  "browserslist": [
+    "defaults and fully supports es6-module",
+    "maintained node versions"
+  ]
 ```
 
-`supabase dev` starts the local supabase development backend and, when this app is configured for it, also starts the frontend dev server for you. Use the frontend URL printed by the command.
+Or in `.browserslistrc` config:
 
-For example, when the supabase project config includes a `serveCommand`, `supabase dev` can launch the frontend too:
+```yaml
+# Browsers that we support
 
-```json5
-{
-  "site": {
-    "serveCommand": "npm run dev"
-  }
-}
+defaults and fully supports es6-module
+maintained node versions
 ```
 
-In a supabase project this lives in `supabase/config.jsonc`.
+Developers set their version lists using queries like `last 2 versions`
+to be free from updating versions manually.
+Browserslist will use [`caniuse-lite`] with [Can I Use] data for this queries.
 
-## Run Only The Frontend
+You can check how config works at our playground: [`browsersl.ist`](https://browsersl.ist/)
 
-If you only want to work on the frontend against the hosted supabase backend, run:
+<a href="https://browsersl.ist/">
+  <img src="/img/screenshot.webp" alt="browsersl.ist website">
+</a>
 
-```bash
-npm run dev
-```
+<br>
+<br>
+<div align="center">
+  <a href="https://evilmartians.com/?utm_source=browserslist"><img src="https://evilmartians.com/badges/sponsored-by-evil-martians.svg" alt="Sponsored by Evil Martians" width="236" height="54"></a>  <a href="https://cube.dev/?ref=eco-browserslist-github"><img src="https://user-images.githubusercontent.com/986756/154330861-d79ab8ec-aacb-4af8-9e17-1b28f1eccb01.svg" alt="Supported by Cube" width="227" height="46"></a>
+</div>
 
-Open the local URL printed by Vite.
-
-## Use The Hosted Backend
-
-For frontend-only development, create or update `.env.local` in the project root:
-
-```bash
-VITE_supabase_APP_ID=your_app_id
-VITE_supabase_APP_BASE_URL=https://your-app.supabase.app
-```
-
-`VITE_supabase_APP_ID` identifies the supabase app.
-
-`VITE_supabase_APP_BASE_URL` tells the supabase Vite plugin where to send local `/api` requests. Point it at your deployed supabase app URL when you want the local frontend to use the hosted backend.
-
-When you use `supabase dev`, the command injects the local supabase values for you, so `.env.local` is mainly needed for frontend-only workflows.
-
-## Publish Your Changes
-
-After pushing your changes to git, open the supabase dashboard and publish the app:
-
-```bash
-supabase dashboard open
-```
-
-## Docs & Support
-
-Documentation: [https://docs.supabase.com/Integrations/Using-GitHub](https://docs.supabase.com/Integrations/Using-GitHub)
-
-supabase CLI command reference: [https://docs.supabase.com/developers/references/cli/commands/introduction](https://docs.supabase.com/developers/references/cli/commands/introduction)
-
-Support: [https://app.supabase.com/support](https://app.supabase.com/support)
+[stylelint-no-unsupported-browser-features]: https://github.com/ismay/stylelint-no-unsupported-browser-features
+[obsolete-webpack-plugin]: https://github.com/ElemeFE/obsolete-webpack-plugin
+[eslint-plugin-compat]: https://github.com/amilajack/eslint-plugin-compat
+[postcss-preset-env]: https://github.com/csstools/postcss-plugins/tree/main/plugin-packs/postcss-preset-env
+[postcss-normalize]: https://github.com/csstools/postcss-normalize
+[`browsersl.ist`]: https://browsersl.ist/
+[`caniuse-lite`]: https://github.com/ben-eb/caniuse-lite
+[Autoprefixer]: https://github.com/postcss/autoprefixer
+[Can I Use]: https://caniuse.com/
+[Babel]: https://github.com/babel/babel/tree/master/packages/babel-preset-env
